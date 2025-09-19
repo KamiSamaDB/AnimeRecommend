@@ -1,72 +1,113 @@
-# Getting Started with Create React App
+# AnimeRecommend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive web application for discovering and exploring anime. Built with React and Material-UI, this application provides an intuitive interface to browse and search through anime titles with detailed information and recommendations.
+
+## Features
+
+- 📱 Responsive grid layout that adapts to different screen sizes
+- 🎨 Modern Material Design using MUI components
+- 🔍 Interactive card design with hover effects
+- 📊 Display of anime ratings, rankings, and popularity
+- 🎯 Genre-based categorization
+- 📺 Comprehensive anime details including:
+  - English and Japanese titles
+  - Episode count
+  - Airing status
+  - Studio information
+  - Synopsis
+  - User ratings and scores
+  - Season information
+  - Type (TV, Movie, OVA, etc.)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (version 14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/KamiSamaDB/AnimeRecommend.git
+cd animerec
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Start the development server:
+```bash
+npm start
+# or
+yarn start
+```
+
+The application will be available at `http://localhost:3000`.
+
+## Tech Stack
+
+- **React** - Frontend framework
+- **Material-UI (MUI)** - UI component library
+- **CSS-in-JS** - Styling solution through MUI's sx prop
+
+## Project Structure
+
+```
+animerec/
+├── public/
+│   └── index.html
+└── src/
+    ├── components/
+    │   ├── AnimeCard.js    - Individual anime display card
+    │   ├── AnimeGrid.js    - Grid layout for anime cards
+    │   └── SearchBar.js    - Search functionality
+    ├── App.js
+    └── index.js
+```
+
+## Features in Detail
+
+### Responsive Design
+- Full-width cards on mobile devices
+- Multi-column grid on larger screens
+- Adaptive typography and spacing
+- Touch-friendly interface
+
+### Card Interactions
+- Hover effects with additional information
+- Smart positioning for edge-case cards
+- Smooth animations and transitions
+- Rating display with star visualization
+
+### Information Display
+- Primary and alternative titles
+- Rating and popularity metrics
+- Genre tags with custom styling
+- Studio information
+- Series status and episode count
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start` - Runs the app in development mode
+- `npm test` - Launches the test runner
+- `npm run build` - Builds the app for production
+- `npm run eject` - Ejects from Create React App
 
-### `npm start`
+## Contributing
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## License
 
-### `npm test`
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Acknowledgments
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# AnimeRecommend" 
-"# AnimeRecommend" 
+- [MyAnimeList API](https://myanimelist.net/) for providing the anime data
+- Material-UI team for the excellent component library
