@@ -1,0 +1,61 @@
+.gradient-border-container {
+  position: relative;
+  padding: var(--border-width, 2px);
+  border-radius: var(--border-radius, 22px);
+  background: linear-gradient(45deg, #FF61D8, #7B61FF, #00ccb1, #1ca0fb);
+  background-size: 400% 400%;
+}
+
+.gradient-border-container.animate {
+  animation: gradientBorderAnimation 6s ease infinite;
+}
+
+.gradient-border-content {
+  position: relative;
+  background: #232344;
+  border-radius: calc(var(--border-radius, 22px) - var(--border-width, 2px));
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gradient-border-container:hover {
+  background-size: 200% 200%;
+  animation-duration: 3s;
+}
+
+.gradient-border-container:focus-within {
+  background-size: 200% 200%;
+  animation-duration: 2s;
+  box-shadow: 0 0 20px rgba(255, 97, 216, 0.3);
+}
+
+@keyframes gradientBorderAnimation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gradient-border-container {
+    --border-width: 1.5px;
+    --border-radius: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-border-container {
+    animation: none !important;
+    background-position: 0% 50% !important;
+  }
+}

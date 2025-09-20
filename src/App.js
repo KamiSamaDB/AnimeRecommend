@@ -3,7 +3,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, Container, Box, Typography, CircularProgress, Alert } from '@mui/material';
 import SearchBar from './components/SearchBar';
 import AnimeGrid from './components/AnimeGrid';
-import { findOriginalAnime, getRecommendations } from './services/animeService';
+import SplitText from './SplitText';
+import { getRecommendations } from './services/animeService';
 import './App.css';
 
 // Create a dark theme instance with anime-inspired colors
@@ -44,6 +45,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const handleAnimationComplete = () => {
+    console.log('All letters have animated!');
+  };
+
   const handleSearch = async (query) => {
     setLoading(true);
     setError(null);
@@ -57,37 +62,20 @@ function App() {
         return;
       }
       
-      // Find original anime and analyze their genres
-      const animeData = await findOriginalAnime(titles);
-      if (!animeData) {
-        setError('Could not find any of the anime titles. Please check the spelling and try again.');
-        setSearchResults([]);
-        return;
-      }
-
-      // Get recommendations based on genre frequency analysis
-      const recommendations = await getRecommendations(animeData);
-      
-      // Add genre analysis information to the error message if no recommendations
-      if (recommendations.length === 0 && animeData.genreAnalysis.length > 0) {
-        const topGenres = animeData.genreAnalysis
-          .filter(g => g.percentage >= 25)
-          .map(g => `${g.name} (${g.frequency} times)`)
-          .join(', ');
-        setError(`No recommendations found. Your input anime contained these main genres: ${topGenres}`);
-        setSearchResults([]);
-        return;
-      }
+      // Call Flask API for recommendations
+      console.log('Getting recommendations from Flask API...');
+      const recommendations = await getRecommendations(titles);
       
       if (recommendations.length === 0) {
-        setError('No recommendations found. Try different anime titles.');
+        setError('No recommendations found. Please ensure your Flask API is running at http://127.0.0.1:5000 and try different anime titles.');
         setSearchResults([]);
       } else {
         setSearchResults(recommendations);
+        console.log(`Successfully got ${recommendations.length} recommendations from Flask API`);
       }
     } catch (err) {
-      setError('Failed to fetch anime recommendations. Please try again.');
-      console.error(err);
+      console.error('Error getting recommendations:', err);
+      setError('Failed to fetch anime recommendations. Please ensure your Flask API is running at http://127.0.0.1:5000 and try again.');
     } finally {
       setLoading(false);
     }
@@ -104,19 +92,21 @@ function App() {
           flexDirection: 'column',
           alignItems: 'center'
         }}>
-          <Typography
-            variant="h1"
-            component="h1"
-            sx={{
-              mb: 4,
-              textAlign: 'center',
-              background: 'linear-gradient(45deg, #FF61D8 30%, #7B61FF 90%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
-            Anime Recommendations
-          </Typography>
+          <SplitText
+            text="Anime Recommendations"
+            className="anime-title"
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+            tag="h1"
+            onLetterAnimationComplete={handleAnimationComplete}
+          />
           
           <SearchBar onSearch={handleSearch} />
           

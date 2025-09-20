@@ -36,3 +36,47 @@
     transform: rotate(360deg);
   }
 }
+
+.anime-title {
+  font-size: 4rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 2rem !important;
+  background: linear-gradient(45deg, #FF61D8 30%, #7B61FF 90%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
+
+.anime-title .split-char {
+  background: linear-gradient(45deg, #FF61D8 30%, #7B61FF 90%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Responsive font sizing */
+@media (max-width: 768px) {
+  .anime-title {
+    font-size: 3rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .anime-title {
+    font-size: 2.5rem !important;
+  }
+}
+
+/* Search bar gradient styling */
+.search-bar-gradient .gradient-border-content {
+  background: #232344 !important;
+}
+
+.search-bar-gradient .MuiPaper-root {
+  background: transparent !important;
+}
+
+.search-bar-gradient:focus-within {
+  box-shadow: 0 0 30px rgba(255, 97, 216, 0.4), 0 0 60px rgba(123, 97, 255, 0.2) !important;
+}
