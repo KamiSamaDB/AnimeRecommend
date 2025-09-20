@@ -44,6 +44,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [info, setInfo] = useState(null);
 
   const handleAnimationComplete = () => {
     console.log('All letters have animated!');
@@ -52,6 +53,7 @@ function App() {
   const handleSearch = async (query) => {
     setLoading(true);
     setError(null);
+    setInfo(null);
     try {
       // Split the query into individual titles
       const titles = query.split(',').map(title => title.trim()).filter(Boolean);
@@ -67,15 +69,21 @@ function App() {
       const recommendations = await getRecommendations(titles);
       
       if (recommendations.length === 0) {
-        setError('No recommendations found. Please ensure your Flask API is running at http://127.0.0.1:5000 and try different anime titles.');
+        setError('No recommendations found. Please try different anime titles.');
         setSearchResults([]);
       } else {
+        // Check if this is test data
+        const isTestData = recommendations.some(rec => rec.flaskData?.note?.includes('test response'));
+        if (isTestData) {
+          setInfo('📢 Currently showing test recommendations. The ML model is being updated for better results.');
+        }
+        
         setSearchResults(recommendations);
         console.log(`Successfully got ${recommendations.length} recommendations from Flask API`);
       }
     } catch (err) {
       console.error('Error getting recommendations:', err);
-      setError('Failed to fetch anime recommendations. Please ensure your Flask API is running at http://127.0.0.1:5000 and try again.');
+      setError('Failed to fetch anime recommendations. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -113,6 +121,12 @@ function App() {
           {error && (
             <Alert severity="error" sx={{ mb: 2, width: '100%' }}>
               {error}
+            </Alert>
+          )}
+          
+          {info && (
+            <Alert severity="info" sx={{ mb: 2, width: '100%' }}>
+              {info}
             </Alert>
           )}
           

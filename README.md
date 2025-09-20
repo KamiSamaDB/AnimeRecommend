@@ -253,7 +253,39 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **shadcn/ui** - For gradient border design inspiration
 - **React Community** - For the robust ecosystem and best practices
 
-## 🐛 Known Issues & Solutions
+## � Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. **Quick Deploy:**
+   ```bash
+   # Push to GitHub
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   
+   # Deploy via Vercel CLI
+   npm i -g vercel
+   vercel login
+   vercel
+   ```
+
+2. **Environment Variables:**
+   - Set `REACT_APP_FLASK_API_URL=https://anime-recommend-backend.vercel.app`
+
+3. **Auto-Deployment:**
+   - Connect GitHub repository to Vercel
+   - Every push to main triggers automatic deployment
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+## 🔧 Configuration Files
+
+- **vercel.json** - Vercel deployment configuration with caching and security headers
+- **.env.example** - Environment variable template
+- **DEPLOYMENT.md** - Complete deployment guide
+
+## �🐛 Known Issues & Solutions
 
 - **Build Cache Issues** - Clear `build/` directory if old code persists
 - **GSAP License** - Some GSAP plugins require commercial license for production

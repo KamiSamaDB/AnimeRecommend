@@ -149,3 +149,38 @@ yarn.lock.backup
 
 # storybook build outputs
 storybook-static
+
+# Vercel deployment
+.vercel
+
+# TypeScript (if added later)
+*.tsbuildinfo
+
+# ESLint/Prettier cache
+.eslintcache
+.prettiercache
+
+# Turborepo cache
+.turbo
+
+# Cypress
+cypress/videos
+cypress/screenshots
+
+# Testing
+/coverage
+/__tests__/coverage/
+
+# Sentry Config File
+.sentryclirc
+
+# Local development
+.local
+
+# PWA files
+workbox-*.js
+sw.js
+sw.js.map
+
+# Build analyzer
+bundle-analyzer-report.html

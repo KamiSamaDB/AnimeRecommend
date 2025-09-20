@@ -88,6 +88,13 @@ const AnimeCard = ({ anime }) => {
           image={anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url || '/placeholder.jpg'}
           alt={anime.title}
           loading="lazy"
+          onError={(e) => {
+            console.error(`Failed to load image for ${anime.title}:`, e.target.src);
+            e.target.src = 'https://via.placeholder.com/300x400/1a1a2e/ff61d8?text=Image+Failed';
+          }}
+          onLoad={() => {
+            console.log(`✅ Successfully loaded image for ${anime.title}`);
+          }}
           sx={{ 
             width: '100%',
             height: '100%',
@@ -157,7 +164,7 @@ const AnimeCard = ({ anime }) => {
                 }}
               >
                 {anime.score}/10
-                {anime.scored_by && ` (${anime.scored_by?.toLocaleString()} users)`}
+                {anime.members && ` (${anime.members?.toLocaleString()} members)`}
               </Typography>
             </>
           ) : (
@@ -167,6 +174,7 @@ const AnimeCard = ({ anime }) => {
               sx={{ fontSize: { xs: '0.65rem', sm: '0.75rem' } }}
             >
               Not yet rated
+              {anime.members && ` • ${anime.members?.toLocaleString()} members`}
             </Typography>
           )}
         </Box>
@@ -268,23 +276,12 @@ const AnimeCard = ({ anime }) => {
             gap: '0.35rem',
             mb: '1rem'
           }}>
-            {anime.season && (
-              <Chip 
-                label={`${anime.season.charAt(0).toUpperCase() + anime.season.slice(1)} ${anime.year || ''}`}
-                size="small" 
-                sx={{ 
-                  bgcolor: 'primary.dark',
-                  fontSize: '0.7rem',
-                  height: '1.25rem'
-                }}
-              />
-            )}
             {anime.rank && (
               <Chip 
-                label={`Rank #${anime.rank.toLocaleString()}`}
+                label={`#${anime.rank} Ranked`}
                 size="small" 
                 sx={{ 
-                  bgcolor: 'primary.dark',
+                  bgcolor: 'success.dark',
                   fontSize: '0.7rem',
                   height: '1.25rem'
                 }}
@@ -292,12 +289,85 @@ const AnimeCard = ({ anime }) => {
             )}
             {anime.popularity && (
               <Chip 
-                label={`Pop #${anime.popularity.toLocaleString()}`}
+                label={`#${anime.popularity} Popular`}
                 size="small" 
                 sx={{ 
                   bgcolor: 'primary.dark',
                   fontSize: '0.7rem',
                   height: '1.25rem'
+                }}
+              />
+            )}
+            {anime.favorites && (
+              <Chip 
+                label={`${anime.favorites.toLocaleString()} favorites`}
+                size="small" 
+                sx={{ 
+                  bgcolor: 'secondary.dark',
+                  fontSize: '0.7rem',
+                  height: '1.25rem'
+                }}
+              />
+            )}
+          </Box>
+
+          {/* Additional info row */}
+          <Box sx={{
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            gap: '0.35rem',
+            mb: '1rem'
+          }}>
+            {anime.aired && (
+              <Chip 
+                label={`Aired: ${anime.aired}`}
+                size="small" 
+                sx={{ 
+                  bgcolor: 'info.dark',
+                  fontSize: '0.65rem',
+                  height: '1.125rem'
+                }}
+              />
+            )}
+            {anime.source && (
+              <Chip 
+                label={`Source: ${anime.source}`}
+                size="small" 
+                sx={{ 
+                  bgcolor: 'info.dark',
+                  fontSize: '0.65rem',
+                  height: '1.125rem'
+                }}
+              />
+            )}
+          </Box>
+
+          {/* Rating and duration info */}
+          <Box sx={{
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            gap: '0.35rem',
+            mb: '1rem'
+          }}>
+            {anime.rating && (
+              <Chip 
+                label={anime.rating}
+                size="small" 
+                sx={{ 
+                  bgcolor: 'warning.dark',
+                  fontSize: '0.65rem',
+                  height: '1.125rem'
+                }}
+              />
+            )}
+            {anime.duration && (
+              <Chip 
+                label={anime.duration}
+                size="small" 
+                sx={{ 
+                  bgcolor: 'grey.700',
+                  fontSize: '0.65rem',
+                  height: '1.125rem'
                 }}
               />
             )}
@@ -318,16 +388,33 @@ const AnimeCard = ({ anime }) => {
           >
             {anime.synopsis || 'No synopsis available.'}
           </Typography>
+          
           {anime.studios?.length > 0 && (
             <Typography 
               variant="body2" 
               sx={{ 
                 fontSize: '0.75rem',
                 color: 'text.secondary',
-                fontStyle: 'italic'
+                fontStyle: 'italic',
+                mb: '0.5rem'
               }}
             >
               Studio: {anime.studios.map(studio => studio.name).join(', ')}
+            </Typography>
+          )}
+
+          {/* Recommendation info */}
+          {anime.matchReason && (
+            <Typography 
+              variant="body2" 
+              sx={{ 
+                fontSize: '0.7rem',
+                color: 'success.main',
+                fontStyle: 'italic',
+                mt: '0.5rem'
+              }}
+            >
+              💡 {anime.matchReason}
             </Typography>
           )}
         </Box>
