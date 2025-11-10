@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://anime-recommend-backend.vercel.app';
+const API_BASE_URL = '/api';
 
 // Fallback function to get anime details from Jikan API using MAL ID
 const getAnimeDetailsFromJikan = async (malId) => {
