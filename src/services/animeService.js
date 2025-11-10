@@ -1,4 +1,4 @@
-const API_BASE_URL = '/api';
+const API_BASE_URL = '';
 
 // Fallback function to get anime details from Jikan API using MAL ID
 const getAnimeDetailsFromJikan = async (malId) => {
