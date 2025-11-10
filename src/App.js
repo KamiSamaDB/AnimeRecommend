@@ -101,7 +101,7 @@ function App() {
           alignItems: 'center'
         }}>
           <SplitText
-            text="Anime Recommendations"
+            text="My Next Anime"
             className="anime-title"
             delay={100}
             duration={0.6}
